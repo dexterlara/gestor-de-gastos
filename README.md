@@ -1,6 +1,9 @@
 💰 Gestor de Gastos
 
 Este es un proyecto web que hice para llevar un mejor control de los ingresos y gastos.
+Captura del proyecto
+
+![Gestor de Gastos](img/captura.png)
 
 # ¿Para qué sirve?
 
