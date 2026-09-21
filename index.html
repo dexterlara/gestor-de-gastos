@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestor de Gastos</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- ENCABEZADO -->
+        <header class="header">
+
+            <div>
+                <h1>Gestor de Gastos</h1>
+                <p>Controla tus ingresos y gastos fácilmente</p>
+            </div>
+
+            <button id="btnTema" class="btn-tema">
+                🌙
+            </button>
+
+        </header>
+
+
+        <!-- RESUMEN -->
+        <section class="resumen">
+
+            <div class="tarjeta saldo">
+                <span>Saldo disponible</span>
+                <h2 id="saldo">$0.00</h2>
+            </div>
+
+            <div class="tarjeta">
+                <span>Ingresos</span>
+                <h2 id="ingresos">$0.00</h2>
+            </div>
+
+            <div class="tarjeta">
+                <span>Gastos</span>
+                <h2 id="gastos">$0.00</h2>
+            </div>
+
+        </section>
+
+
+        <!-- FORMULARIO -->
+        <section class="panel">
+
+            <h2>Agregar movimiento</h2>
+
+            <form id="formMovimiento">
+
+                <div class="campo">
+
+                    <label for="descripcion">
+                        Descripción
+                    </label>
+
+                    <input
+                        type="text"
+                        id="descripcion"
+                        placeholder="Ej: Compra de alimentos"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="monto">
+                        Monto
+                    </label>
+
+                    <input
+                        type="number"
+                        id="monto"
+                        placeholder="0.00"
+                        step="0.01"
+                        min="0.01"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="fecha">
+                        Fecha
+                    </label>
+
+                    <input
+                        type="date"
+                        id="fecha"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="tipo">
+                        Tipo
+                    </label>
+
+                    <select id="tipo">
+
+                        <option value="ingreso">
+                            Ingreso
+                        </option>
+
+                        <option value="gasto">
+                            Gasto
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="categoria">
+                        Categoría
+                    </label>
+
+                    <select id="categoria">
+
+                        <option value="alimentacion">
+                            Alimentación
+                        </option>
+
+                        <option value="transporte">
+                            Transporte
+                        </option>
+
+                        <option value="entretenimiento">
+                            Entretenimiento
+                        </option>
+
+                        <option value="salud">
+                            Salud
+                        </option>
+
+                        <option value="educacion">
+                            Educación
+                        </option>
+
+                        <option value="trabajo">
+                            Trabajo
+                        </option>
+
+                        <option value="otros">
+                            Otros
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-agregar"
+                >
+                    + Agregar movimiento
+                </button>
+
+                <button
+                    type="button"
+                    id="btnCancelar"
+                    class="btn-cancelar"
+                    hidden
+                >
+                    Cancelar
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- HISTORIAL -->
+        <section class="panel">
+
+            <div class="titulo-historial">
+
+                <h2>Movimientos</h2>
+
+                <select id="filtro">
+
+                    <option value="todos">
+                        Todos
+                    </option>
+
+                    <option value="ingreso">
+                        Ingresos
+                    </option>
+
+                    <option value="gasto">
+                        Gastos
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="listaMovimientos"
+                class="lista-movimientos"
+            >
+
+                <div class="sin-movimientos">
+
+                    <p>
+                        No hay movimientos registrados.
+                    </p>
+
+                    <span>
+                        Agrega tu primer ingreso o gasto.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ESTADÍSTICAS -->
+        <section class="panel estadisticas">
+
+            <h2>
+                Estadísticas
+            </h2>
+
+
+            <div class="estadisticas-grid">
+
+                <!-- MAYOR GASTO -->
+                <div class="estadistica">
+
+                    <span>
+                        Mayor gasto
+                    </span>
+
+                    <strong id="mayorGasto">
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+                <!-- TOTAL MOVIMIENTOS -->
+                <div class="estadistica">
+
+                    <span>
+                        Total de movimientos
+                    </span>
+
+                    <strong id="totalMovimientos">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- PROMEDIO -->
+                <div class="estadistica">
+
+                    <span>
+                        Promedio de gasto
+                    </span>
+
+                    <strong id="promedioGasto">
+                        $0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- GRÁFICO -->
+            <div class="grafico-container">
+
+                <h3>
+                    Gastos por categoría
+                </h3>
+
+                <div
+                    id="graficoCategorias"
+                    class="grafico"
+                >
+
+                    <p>
+                        No hay gastos registrados.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

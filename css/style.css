@@ -1,0 +1,471 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #1f2937;
+    min-height: 100vh;
+}
+
+.app {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 0;
+}
+
+/* ENCABEZADO */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.header p {
+    color: #6b7280;
+}
+
+.btn-tema {
+    border: none;
+    background: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+/* RESUMEN */
+
+.resumen {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+/* Responsive: ajustes para pantallas pequeñas se consolidan al final */
+
+.saldo h2 {
+    color: #2563eb;
+}
+
+
+/* PANELES */
+
+.panel {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.panel h2 {
+    margin-bottom: 20px;
+}
+
+
+/* FORMULARIO */
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.campo label {
+    font-weight: bold;
+}
+
+.campo input,
+.campo select,
+#filtro {
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-color: #2563eb;
+}
+
+.btn-agregar {
+    grid-column: span 2;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-agregar:hover {
+    background: #1d4ed8;
+}
+
+
+/* HISTORIAL */
+
+.titulo-historial {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lista-movimientos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sin-movimientos {
+    text-align: center;
+    padding: 30px;
+    color: #6b7280;
+}
+
+.sin-movimientos span {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    .resumen {
+        grid-template-columns: 1fr;
+    }
+
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-agregar {
+        grid-column: span 1;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+}
+
+/* MOVIMIENTOS */
+
+.movimiento {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fafafa;
+}
+
+.movimiento div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.movimiento div:first-child span {
+    color: #6b7280;
+    font-size: 13px;
+    text-transform: capitalize;
+}
+
+.movimiento .fecha {
+    display: block;
+    color: #9ca3af;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.movimiento-derecha {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.ingreso {
+    color: #16a34a;
+}
+
+.gasto {
+    color: #dc2626;
+}
+
+.btn-eliminar {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.btn-eliminar:hover {
+    transform: scale(1.1);
+}
+
+/* Mejoras: transiciones y accesibilidad */
+.btn-eliminar {
+    transition: transform 0.15s ease;
+}
+
+.btn-agregar {
+    transition: background 0.15s ease, transform 0.12s ease;
+}
+
+.btn-agregar:focus-visible,
+.btn-tema:focus-visible,
+.btn-eliminar:focus-visible {
+    outline: 3px solid rgba(37,99,235,0.25);
+    outline-offset: 2px;
+}
+
+.btn-cancelar {
+    grid-column: span 2;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: white;
+    color: #111827;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn-cancelar[hidden] {
+    display: none;
+}
+
+.btn-editar {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.btn-editar:hover {
+    transform: scale(1.05);
+}
+
+.btn-tema {
+    border: 1px solid #e5e7eb;
+    color: #111827;
+}
+ 
+/* ESTADÍSTICAS
+========================= */
+
+.estadisticas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.estadistica {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+}
+
+.estadistica span {
+    display: block;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.estadistica strong {
+    font-size: 24px;
+}
+
+
+/* GRÁFICO */
+
+.grafico-container {
+    margin-top: 10px;
+}
+
+.grafico-container h3 {
+    margin-bottom: 15px;
+}
+
+.grafico {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.barra-contenedor {
+    display: grid;
+    grid-template-columns: 140px 1fr 80px;
+    align-items: center;
+    gap: 10px;
+}
+
+.barra-fondo {
+    height: 20px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.barra {
+    height: 100%;
+    background: #2563eb;
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+.valor-barra {
+    text-align: right;
+    font-weight: bold;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    .estadisticas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .barra-contenedor {
+        grid-template-columns: 100px 1fr 70px;
+    }
+}
+
+/* MODO OSCURO
+========================= */
+
+body.modo-oscuro {
+    background: #111827;
+    color: #f3f4f6;
+}
+
+
+/* ENCABEZADO */
+
+body.modo-oscuro .header p {
+    color: #9ca3af;
+}
+
+body.modo-oscuro .btn-tema {
+    background: #1f2937;
+    color: #f3f4f6;
+}
+
+
+/* TARJETAS Y PANELES */
+
+body.modo-oscuro .tarjeta,
+body.modo-oscuro .panel {
+    background: #1f2937;
+    color: #f3f4f6;
+}
+
+
+/* TEXTOS SECUNDARIOS */
+
+body.modo-oscuro .tarjeta span,
+body.modo-oscuro .estadistica span,
+body.modo-oscuro .movimiento div:first-child span {
+    color: #9ca3af;
+}
+
+
+/* ESTADÍSTICAS */
+
+body.modo-oscuro .estadistica {
+    background: #111827;
+    border-color: #374151;
+}
+
+
+/* INPUTS Y SELECTS */
+
+body.modo-oscuro .campo input,
+body.modo-oscuro .campo select,
+body.modo-oscuro #filtro {
+    background: #111827;
+    color: #f3f4f6;
+    border-color: #374151;
+}
+
+
+/* PLACEHOLDER */
+
+body.modo-oscuro .campo input::placeholder {
+    color: #9ca3af;
+}
+
+
+/* MOVIMIENTOS */
+
+body.modo-oscuro .movimiento {
+    background: #111827;
+    border-color: #374151;
+}
+
+
+/* BARRAS */
+
+body.modo-oscuro .barra-fondo {
+    background: #374151;
+}
+
+
+/* BOTÓN ELIMINAR */
+
+body.modo-oscuro .btn-eliminar {
+    color: #f3f4f6;
+}
+
+
+/* TÍTULOS */
+
+body.modo-oscuro .panel h2,
+body.modo-oscuro .grafico-container h3 {
+    color: #f3f4f6;
+}
+
+
+/* TRANSICIÓN */
+
+body,
+.tarjeta,
+.panel,
+.estadistica,
+.movimiento,
+.campo input,
+.campo select,
+#filtro,
+.btn-tema,
+.barra-fondo {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
